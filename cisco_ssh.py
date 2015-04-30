@@ -10,12 +10,13 @@ class CiscoSSH:
     BUFFER = 5000
     RETRIES = 5 
 
-    def __init__(self, creds=None, ip=None, port=None, path_to_keys=None):
+    def __init__(self, creds=None, ip=None, port=None, path_to_keys=None, logger=None):
         # need to add facility for username. password combos
         self.ip = ip
         self.port = port or 22
         self.creds = creds
         self.chan = None
+        self.logger = logger or logging.getLogger(__name__)
 
         self.load_keys(path=path_to_keys)
 #        self.authenticate()
