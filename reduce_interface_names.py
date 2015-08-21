@@ -96,7 +96,7 @@ def reduce_iface(base, new):
         # are not equal
         if any([l[0] != l[1] for l in zip(_b, _new)[:-1]]):
             continue
-        # insert new iface into base iface then return new reduced sssssinterfaces
+        # insert new iface into base iface then return new reduced interfaces
         else:
             _b[-1] = insert_in_range(_b[-1], _new[-1])
             _base[i] = "".join(_b)
@@ -104,3 +104,14 @@ def reduce_iface(base, new):
      # if new doesn't match any of the base ifaces, append into base
     _base.append(new)
     return REDUCED_IFACES_DELIM.join(_base)
+
+def reduce_iface_2(ifaces):
+    """
+    Wrapper for reduce_iface, takes a single list of interface names
+    and outputs a reduced interface list
+    """
+    tmp = ""
+    ifaces.sort()
+    for iface in ifaces:
+       tmp = reduce_iface(tmp, iface)
+    return tmp
